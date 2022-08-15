@@ -11,7 +11,7 @@ Welcome to Work 18's documentation!
    :caption: Contents:
    :numbered:
 
-   build_package
+   work-18/build_package
 
 
 
