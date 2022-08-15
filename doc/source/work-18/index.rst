@@ -3,22 +3,11 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-プログラミングに関するメモ書き
-==============================
+setuptoolsを使用したPythonパッケージのビルド
+============================================
 
 .. toctree::
    :maxdepth: 4
    :caption: Contents:
-   :numbered:
 
-   work-17/index
-   work-18/index
-
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   build_package
