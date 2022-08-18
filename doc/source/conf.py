@@ -2,7 +2,7 @@ import platform
 
 platform_name = platform.system()  # Windows, Darwin, Linux
 
-project = "my project"
+project = "My programming note"
 copyright = "Shunya Sasaki"
 author = "Shunya Sasaki"
 

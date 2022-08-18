@@ -11,3 +11,4 @@ setuptoolsを使用したPythonパッケージのビルド
    :caption: Contents:
 
    build_package
+   coding_package
