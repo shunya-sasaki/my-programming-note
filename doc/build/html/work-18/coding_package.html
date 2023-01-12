@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2.2. パッケージ作成時の工夫点 &mdash; My programming note  ドキュメント</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="3. テキストエディタ" href="../work-xx_texteditor/popular.html" />
+    <link rel="prev" title="2.1.5. ビルドの実行" href="sub_build_package/run_build.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> My programming note
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../work-17/index.html">1. Embeddabl Pythonについて</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../work-17/what_is_pip_install.html">1.1. pip installの処理内容</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../work-17/what_is_pip_install.html#id1">1.1.1. 処理の流れ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../work-17/what_is_pip_install.html#pypi">1.1.2. PyPIサイトでのパッケージの探索</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../work-17/what_is_pip_install.html#id3">1.1.3. パッケージのビルド</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../work-17/what_is_pip_install.html#id4">1.1.4. パッケージのインストール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../work-17/what_is_pip_install.html#whl">1.1.5. ローカルwhlパッケージのインストール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../work-17/what_is_pip_install.html#git">1.1.6. Gitリポジトリからのインストール</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../work-17/embeddable_python.html">1.2. Embeddable Python</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../work-17/embeddable_python.html#id1">1.2.1. Embeddable Pythonとは</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../work-17/embeddable_python.html#id2">1.2.2. Embeddable Pythonのセットアップ</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../work-17/embeddable_python.html#zip">1.2.2.1. 配布zipのダウンロード</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../work-17/embeddable_python.html#pip">1.2.2.2. pipのセットアップ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../work-17/embeddable_python.html#id4">1.2.2.3. サードパティパッケージのインストール</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../work-17/embeddable_python.html#id5">1.2.3. 配布時の注意点</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../work-17/embeddable_python.html#id6">1.2.3.1. モジュールプログラムが利用できない</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../work-17/embeddable_python.html#dll">1.2.3.2. DLLの呼び出しに失敗する場合がある</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../work-17/embeddable_python.html#id7">1.2.3.3. エラーの解決手段</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">2. setuptoolsを使用したPythonパッケージのビルド</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="build_package.html">2.1. Pythonパッケージのビルド</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sub_build_package/flowchart.html">2.1.1. パッケージ作成の流れ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sub_build_package/directory_config.html">2.1.2. ファイル・フォルダ構成の整理</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sub_build_package/directory_config.html#src">2.1.2.1. srcレイアウト</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sub_build_package/directory_config.html#id2">2.1.2.2. フラットレイアウト</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sub_build_package/pyproject.html">2.1.3. ビルド設定ファイルの作成</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sub_build_package/pyproject.html#id2">2.1.3.1. ビルド設定ファイルの種類</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sub_build_package/pyproject.html#pyproject-toml">2.1.3.2. pyproject.tomlの作成</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sub_build_package/gittag.html">2.1.4. Gitタグの更新</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sub_build_package/gittag.html#id1">2.1.4.1. セマンティックバージョニング</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sub_build_package/gittag.html#id2">2.1.4.2. Gitタグ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sub_build_package/gittag.html#setuptools-scm">2.1.4.3. setuptools-scmによる自動番号付</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sub_build_package/run_build.html">2.1.5. ビルドの実行</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2.2. パッケージ作成時の工夫点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">2.2.1. 絶対インポートを用いる</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">2.2.2. コードスニペットを活用する</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../work-xx_texteditor/popular.html">3. テキストエディタ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">My programming note</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html"><span class="section-number">2. </span>setuptoolsを使用したPythonパッケージのビルド</a> &raquo;</li>
+      <li><span class="section-number">2.2. </span>パッケージ作成時の工夫点</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/work-18/coding_package.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">2.2. </span>パッケージ作成時の工夫点<a class="headerlink" href="#id1" title="この見出しへのパーマリンク"></a></h1>
+<section id="id2">
+<h2><span class="section-number">2.2.1. </span>絶対インポートを用いる<a class="headerlink" href="#id2" title="この見出しへのパーマリンク"></a></h2>
+<p>Pythonスクリプトではモジュールファイルのインポート方法は
+大きく2つに分けられ、 <strong>絶対インポート</strong> と <strong>相対インポート</strong> がある。</p>
+<dl class="simple">
+<dt>絶対インポート</dt><dd><p>ルートディレクトリを基準にモジュールの場所を記述する方法</p>
+</dd>
+<dt>相対インポート</dt><dd><p>インポートを実行するファイルディレクトリを基準にモジュールの場所を記述する方法</p>
+</dd>
+</dl>
+<p>具体例を用いた説明のため、以下のディレクトリ構成において、
+first_func.py、second_func.py、third_func_sub.py
+で定義された関数をthirdディレクトリ内のスクリプトから
+インポートして呼び出す場合を考える。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>mypkg    # ルートディレクトリ=絶対インポートの起点
+├── __init__.py
+└── first
+    ├── __init__.py
+    ├── first_func.py              # 関数を定義
+    └── second
+        ├── __init__.py
+        ├── second_func.py         # 関数を定義
+        ├── third
+        │   ├── __init__.py
+        │   ├── call_abs.py       # ここから呼び出す
+        │   ├── call_rel1.py      # ここから呼び出す
+        │   └── call_rel2.py      # ここから呼び出す
+        └── third_sub
+            └── third_func_sub.py  # 関数を定義
+</pre></div>
+</div>
+<p><strong>絶対インポートの場合(call_abs.py)</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;上位層のfirstとsecondで定義された関数を絶対インポートする</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">mypkg.first.first_func</span> <span class="kn">import</span> <span class="n">func_first</span>
+<span class="kn">from</span> <span class="nn">mypkg.first.second.second_func</span> <span class="kn">import</span> <span class="n">func_second</span>
+<span class="kn">from</span> <span class="nn">mypkg.first.second.third_sub.third_func_sub</span> <span class="kn">import</span> <span class="n">subfunc</span>
+
+<span class="k">def</span> <span class="nf">call_first</span><span class="p">():</span>
+    <span class="n">func_first</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">call_second</span><span class="p">():</span>
+    <span class="n">func_second</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">call_sub</span><span class="p">():</span>
+    <span class="n">subfunc</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>相対インポートの場合(call_rel1.py)</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;上位層のfirstとsecondで定義された関数を相対インポートする</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">...first_func</span> <span class="kn">import</span> <span class="n">func_first</span>
+<span class="kn">from</span> <span class="nn">..second_func</span> <span class="kn">import</span> <span class="n">func_second</span>
+<span class="kn">from</span> <span class="nn">..third_sub.third_func_sub</span> <span class="kn">import</span> <span class="n">subfunc</span>
+
+<span class="k">def</span> <span class="nf">call_first</span><span class="p">():</span>
+    <span class="n">func_first</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">call_second</span><span class="p">():</span>
+    <span class="n">func_second</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">call_sub</span><span class="p">():</span>
+    <span class="n">subfunc</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>相対インポートの場合(call_rel2.py)</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;上位層のfirstとsecondで定義された関数を相対インポートする</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">...first_func</span> <span class="kn">import</span> <span class="n">func_first</span>
+<span class="kn">from</span> <span class="nn">..second_func</span> <span class="kn">import</span> <span class="n">func_second</span>
+<span class="kn">from</span> <span class="nn">...second.third_sub.third_func_sub</span> <span class="kn">import</span> <span class="n">subfunc</span>
+
+<span class="k">def</span> <span class="nf">call_first</span><span class="p">():</span>
+    <span class="n">func_first</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">call_second</span><span class="p">():</span>
+    <span class="n">func_second</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">call_sub</span><span class="p">():</span>
+    <span class="n">subfunc</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>絶対インポートの方がモジュール構造が可視化され
+構造がわかりやすく可読性に優れている。
+また、予期せぬモジュールの二重インポートも防げるため、
+基本的には絶対インポートを使用することを推奨する。
+(Googleスタイルガイドでも絶対インポートを推奨)</p>
+<p>排反として階層が深くなるとインポート文が長くなってしまうので、
+モジュール名は短くするなどの工夫が必要である。</p>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>FlaskやDjangoなどのWebアプリフレームワークでは相対インポートを推奨している。
+これはフレームワーク開発ではディレクトリ構成が実効的な意味を持ち、
+明確に構造が決まっているためである。フレームワークを用いた開発では
+公式のガイドラインに従って組む方が効率的であり、このような場合には
+相対インポートを使用することを推奨する。しかしながら、バックエンド処理など
+フレームワークの範囲外の処理については、明確に分離して絶対インポートを用いることを
+推奨する。</p>
+</div>
+</section>
+<section id="id3">
+<h2><span class="section-number">2.2.2. </span>コードスニペットを活用する<a class="headerlink" href="#id3" title="この見出しへのパーマリンク"></a></h2>
+<p>pyproject.tomlの記述や可視化処理の定義文など、
+よく記述する文についてはスニペットとして保存しておき、
+再利用するのが便利である。</p>
+<p>参考: <a class="reference external" href="https://code.visualstudio.com/docs/editor/userdefinedsnippets">Snippets in Visual Studio Code</a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="sub_build_package/run_build.html" class="btn btn-neutral float-left" title="2.1.5. ビルドの実行" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../work-xx_texteditor/popular.html" class="btn btn-neutral float-right" title="3. テキストエディタ" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Shunya Sasaki.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
