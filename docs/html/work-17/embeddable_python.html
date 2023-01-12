@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.2. Embeddable Python &mdash; My programming note  ドキュメント</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="2. setuptoolsを使用したPythonパッケージのビルド" href="../work-18/index.html" />
+    <link rel="prev" title="1.1. pip installの処理内容" href="what_is_pip_install.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> My programming note
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">1. Embeddabl Pythonについて</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="what_is_pip_install.html">1.1. pip installの処理内容</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="what_is_pip_install.html#id1">1.1.1. 処理の流れ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="what_is_pip_install.html#pypi">1.1.2. PyPIサイトでのパッケージの探索</a></li>
+<li class="toctree-l3"><a class="reference internal" href="what_is_pip_install.html#id3">1.1.3. パッケージのビルド</a></li>
+<li class="toctree-l3"><a class="reference internal" href="what_is_pip_install.html#id4">1.1.4. パッケージのインストール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="what_is_pip_install.html#whl">1.1.5. ローカルwhlパッケージのインストール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="what_is_pip_install.html#git">1.1.6. Gitリポジトリからのインストール</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1.2. Embeddable Python</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">1.2.1. Embeddable Pythonとは</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">1.2.2. Embeddable Pythonのセットアップ</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#zip">1.2.2.1. 配布zipのダウンロード</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pip">1.2.2.2. pipのセットアップ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">1.2.2.3. サードパティパッケージのインストール</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">1.2.3. 配布時の注意点</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id6">1.2.3.1. モジュールプログラムが利用できない</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dll">1.2.3.2. DLLの呼び出しに失敗する場合がある</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">1.2.3.3. エラーの解決手段</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../work-18/index.html">2. setuptoolsを使用したPythonパッケージのビルド</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../work-18/build_package.html">2.1. Pythonパッケージのビルド</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../work-18/sub_build_package/flowchart.html">2.1.1. パッケージ作成の流れ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../work-18/sub_build_package/directory_config.html">2.1.2. ファイル・フォルダ構成の整理</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../work-18/sub_build_package/directory_config.html#src">2.1.2.1. srcレイアウト</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../work-18/sub_build_package/directory_config.html#id2">2.1.2.2. フラットレイアウト</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../work-18/sub_build_package/pyproject.html">2.1.3. ビルド設定ファイルの作成</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../work-18/sub_build_package/pyproject.html#id2">2.1.3.1. ビルド設定ファイルの種類</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../work-18/sub_build_package/pyproject.html#pyproject-toml">2.1.3.2. pyproject.tomlの作成</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../work-18/sub_build_package/gittag.html">2.1.4. Gitタグの更新</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../work-18/sub_build_package/gittag.html#id1">2.1.4.1. セマンティックバージョニング</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../work-18/sub_build_package/gittag.html#id2">2.1.4.2. Gitタグ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../work-18/sub_build_package/gittag.html#setuptools-scm">2.1.4.3. setuptools-scmによる自動番号付</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../work-18/sub_build_package/run_build.html">2.1.5. ビルドの実行</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../work-18/coding_package.html">2.2. パッケージ作成時の工夫点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../work-18/coding_package.html#id2">2.2.1. 絶対インポートを用いる</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../work-18/coding_package.html#id3">2.2.2. コードスニペットを活用する</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../work-xx_texteditor/popular.html">3. テキストエディタ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">My programming note</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html"><span class="section-number">1. </span>Embeddabl Pythonについて</a> &raquo;</li>
+      <li><span class="section-number">1.2. </span>Embeddable Python</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/work-17/embeddable_python.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="embeddable-python">
+<h1><span class="section-number">1.2. </span>Embeddable Python<a class="headerlink" href="#embeddable-python" title="この見出しへのパーマリンク"></a></h1>
+<section id="id1">
+<h2><span class="section-number">1.2.1. </span>Embeddable Pythonとは<a class="headerlink" href="#id1" title="この見出しへのパーマリンク"></a></h2>
+<ul class="simple">
+<li><p>最小限のPython環境を含んだzipファイルとして配布されている</p></li>
+<li><p>環境変数、システムレジストリの設定、インストールされているパッケージといったユーザのシステムからほぼ独立している</p></li>
+<li><p>ZIP内には標準ライブラリがプリコンパイルにより最適化された.pycとして含まれ、python3.dllやpython.exeなどが全て含まれている</p></li>
+<li><p>Windows版のみ</p></li>
+</ul>
+</section>
+<section id="id2">
+<h2><span class="section-number">1.2.2. </span>Embeddable Pythonのセットアップ<a class="headerlink" href="#id2" title="この見出しへのパーマリンク"></a></h2>
+<section id="zip">
+<span id="download-embed"></span><h3><span class="section-number">1.2.2.1. </span>配布zipのダウンロード<a class="headerlink" href="#zip" title="この見出しへのパーマリンク"></a></h3>
+<p>Pythonの公式Webのダウンロードページ(<a class="reference external" href="https://www.python.org/downloads/">https://www.python.org/downloads/</a>)から、
+入手したいバージョンのリンクにアクセスして、配布されているインストールファイルの中から、
+&quot;Windows embeddable package (64-bit)&quot;をダウンロードする。
+ダウンロードした後は、ローカル環境の任意の場所に展開する。</p>
+</section>
+<section id="pip">
+<span id="setup-pip"></span><h3><span class="section-number">1.2.2.2. </span>pipのセットアップ<a class="headerlink" href="#pip" title="この見出しへのパーマリンク"></a></h3>
+<p>ダウンロードしたEmbeddable Packageにはpipパッケージが含まれないので、pipコマンドが使用できずサードパティパッケージのインストールができない。
+そのため、pipコマンドを使用できるようにするためのセットアップが必要となる。以下にその手順を示す。</p>
+<p><strong>python3X._pthの編集</strong></p>
+<p>zipファイルを展開してできたフォルダの中にpython3X._pth (XはダウンロードしたPythonのマイナーバージョン番号) というファイルがある。
+このファイルをテキストエディタで開き、以下のように&quot;#import site&quot;のコメントアウトを外す。</p>
+<p>修正前</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python310</span><span class="o">.</span><span class="n">zip</span>
+<span class="o">.</span>
+
+<span class="c1"># Uncomment to run site.main() automatically</span>
+<span class="c1">#import site</span>
+</pre></div>
+</div>
+<p>修正後</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python310</span><span class="o">.</span><span class="n">zip</span>
+<span class="o">.</span>
+
+<span class="c1"># Uncomment to run site.main() automatically</span>
+<span class="kn">import</span> <span class="nn">site</span>
+</pre></div>
+</div>
+<p><strong>get-pip.pyの入手と実行</strong></p>
+<p>pipパッケージをインストールはget-pip.pyというPythonスクリプトを使用して行う。
+まずはこのget-pip.pyを <a class="reference external" href="https://bootstrap.pypa.io/get-pip.py">公式の配布リンク</a> からダウンロードする。</p>
+<p>ダウンロードしたget-pip.pyをEmbeddable Pythonのフォルダに保存して、フォルダ内で以下のコマンドを実行する。
+この時、python.exeはフォルダ内のプログラムを実行する必要があることに注意する。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span>\<span class="n">python</span><span class="o">.</span><span class="n">exe</span> <span class="n">get</span><span class="o">-</span><span class="n">pip</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>プログラムの実行後に、Embeddable Pythonフォルダ内にScripts/pip.exeが作成されpipコマンドが実行可能になる。</p>
+<p><strong>参考(自動セットアップスクリプト)</strong></p>
+<p><a class="reference internal" href="#download-embed"><span class="std std-ref">配布zipのダウンロード</span></a> および <a class="reference internal" href="#setup-pip"><span class="std std-ref">pipのセットアップ</span></a> の作業を自動化するスクリプトを以下に作成した。
+このスクリプトでは指定したバージョンのEmbeddable Pythonパッケージをダウンロードして、
+pipの実行設定までは自動的に行う。</p>
+<p><a class="reference external" href="http://10.">自動セットアップスクリプト (GitLab)リポジトリへのリンク</a></p>
+</section>
+<section id="id4">
+<h3><span class="section-number">1.2.2.3. </span>サードパティパッケージのインストール<a class="headerlink" href="#id4" title="この見出しへのパーマリンク"></a></h3>
+<p>サードパティのパッケージのEmbeddable Python環境へのインストールは、通常の環境と同様に&quot;pip install&quot;コマンドで追加できる。
+この時に実行するpipコマンドはEmbeddable Python環境内のプログラムを実行するように指定する必要がある。</p>
+<p>Embeddable Pythonフォルダ (python-3.X.Y-embed-amd64フォルダ直下の場合)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span>\<span class="n">Scripts</span>\<span class="n">pip</span> <span class="n">install</span> <span class="n">パッケージ名</span>
+</pre></div>
+</div>
+<p>または</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span>\<span class="n">python</span><span class="o">.</span><span class="n">exe</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">パッケージ名</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>pipコマンドに限らず、python.exeなどのコマンドは明示的にEmbeddable Pythonフォルダ内のファイルを指定して実行することを推奨する。
+明示的に指定しないとユーザシステムにpythonがインストールされている場合、そちらが実行されてしまい正しく動作しない可能性がある。</p>
+</div>
+</section>
+</section>
+<section id="id5">
+<h2><span class="section-number">1.2.3. </span>配布時の注意点<a class="headerlink" href="#id5" title="この見出しへのパーマリンク"></a></h2>
+<section id="id6">
+<h3><span class="section-number">1.2.3.1. </span>モジュールプログラムが利用できない<a class="headerlink" href="#id6" title="この見出しへのパーマリンク"></a></h3>
+<p>モジュールプログラムはパッケージのインストール時に作成されるが、
+この時モジュールプログラム内部で呼び出すライブラリのリンクパスが絶対パスとしてプログラム内に記録される。
+そのため、ライブラリ環境のフォルダを移動させたりして絶対パスが変化するとリンクが正しく機能せずにエラーとなってしまう。</p>
+</section>
+<section id="dll">
+<h3><span class="section-number">1.2.3.2. </span>DLLの呼び出しに失敗する場合がある<a class="headerlink" href="#dll" title="この見出しへのパーマリンク"></a></h3>
+<p>GPUドライバなどシステムに依存するDLLをライブラリプログラムで使用する場合は、
+パッケージのインストール時にDLLとの関連付けが行われる場合がある。
+そのため、Embeddable Python環境を他のPCにコピーした場合にこのDLL呼び出しの部分で
+エラーを引き起こす場合がある。</p>
+</section>
+<section id="id7">
+<h3><span class="section-number">1.2.3.3. </span>エラーの解決手段<a class="headerlink" href="#id7" title="この見出しへのパーマリンク"></a></h3>
+<p>必要なwhlファイルを配布フォルダに同梱させて、配布先でwhlファイルからパッケージの再インストールをすることによって
+配布先でモジュールプログラムの再作成やDLLとの再リンクができる。</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="what_is_pip_install.html" class="btn btn-neutral float-left" title="1.1. pip installの処理内容" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../work-18/index.html" class="btn btn-neutral float-right" title="2. setuptoolsを使用したPythonパッケージのビルド" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Shunya Sasaki.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
